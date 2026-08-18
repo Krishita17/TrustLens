@@ -92,6 +92,8 @@ The dashboard works immediately with synthetic data — no model training requir
 | **Anchor Rules** | IF-THEN rules with precision and coverage metrics |
 | **Counterfactual Analysis** | "What would change the decision?" — actionable remediation |
 | **Novel Evaluation Metrics** | Faithfulness, stability, sparsity, comprehensibility, latency |
+| **🆕 XAI Consensus Score** | Cross-method agreement (SHAP vs LIME vs Anchor); flags disagreement for human review — `src/xai/consensus.py` |
+| **🆕 Robustness Auditing** | Adversarial ε-perturbation test; detects explanation-fragility attacks — `src/xai/robustness.py` |
 
 ### Zero Trust Architecture
 | Feature | Description |
@@ -100,6 +102,7 @@ The dashboard works immediately with synthetic data — no model training requir
 | **Trust Score Engine** | Weighted multi-factor trust computation (device + behavior + network + auth + location) |
 | **Policy Engine** | Never trust/always verify, least privilege, continuous validation, micro-segmentation |
 | **Compliance Mapping** | Automatic NIST, HIPAA, GDPR tagging for every decision |
+| **🆕 Concept-Drift Monitor** | PSI-based distribution-shift detection; recommends retrain when the trust model decays or is drift-poisoned — `src/zta/drift_monitor.py` |
 
 ### Dashboard (5 Pages)
 | Page | Description |
@@ -166,6 +169,17 @@ The dashboard works immediately with synthetic data — no model training requir
 
 ---
 
+## Documentation
+
+| Document | Contents |
+|----------|----------|
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | C4 context/component views, decision sequence, and the v2.0 explanation-assurance loop (Mermaid) |
+| [`docs/THREAT_MODEL.md`](docs/THREAT_MODEL.md) | STRIDE threat model + attack tree for explanation-manipulation & drift-poisoning attacks |
+| [`../SECURITY.md`](../SECURITY.md) | Vulnerability disclosure policy and security hardening controls |
+| [`../CHANGELOG.md`](../CHANGELOG.md) | Version history (v2.0 assurance layer) |
+
+---
+
 ## Project Structure
 
 ```
@@ -204,13 +218,16 @@ XAI-ZTA/
 │   │   ├── shap_explainer.py        # SHAP TreeExplainer + KernelExplainer
 │   │   ├── lime_explainer.py        # LIME tabular explainer
 │   │   ├── anchor_explainer.py      # Anchor rule-based explanations
-│   │   └── xai_evaluator.py         # Faithfulness / stability / sparsity
+│   │   ├── xai_evaluator.py         # Faithfulness / stability / sparsity
+│   │   ├── consensus.py             # 🆕 XAI Consensus Score (cross-method agreement)
+│   │   └── robustness.py            # 🆕 Adversarial explanation-robustness auditor
 │   │
 │   ├── zta/
 │   │   ├── policy_engine.py         # NIST SP 800-207 policy enforcement
 │   │   ├── trust_scorer.py          # Weighted trust score computation
 │   │   ├── context_builder.py       # Auth request → context vector
-│   │   └── decision_logger.py       # Audit logging + compliance tags
+│   │   ├── decision_logger.py       # Audit logging + compliance tags
+│   │   └── drift_monitor.py         # 🆕 PSI concept-drift monitor (retrain signal)
 │   │
 │   └── dashboard/
 │       ├── app.py                   # Streamlit entry point (5 pages)
@@ -560,7 +577,7 @@ For research using real network intrusion data, download [UNSW-NB15](https://res
 python -m pytest tests/ -v
 ```
 
-**39 tests, all passing** (~3 seconds).
+**59 tests, all passing** (~3 seconds).
 
 | Test File | Tests | Coverage |
 |-----------|-------|----------|
@@ -569,6 +586,9 @@ python -m pytest tests/ -v
 | `test_shap_explainer.py` | 6 | SHAP values, JSON serialization, feature ranking |
 | `test_lime_explainer.py` | 5 | LIME output, feature weights, text summaries |
 | `test_policy_engine.py` | 8 | ZTA principles, trust scoring, full evaluation |
+| `test_consensus.py` 🆕 | 9 | XAI Consensus Score, disagreement flagging, bounds |
+| `test_robustness.py` 🆕 | 5 | Robustness score, fragility signature, determinism |
+| `test_drift_monitor.py` 🆕 | 6 | PSI drift bands, retrain trigger, prediction PSI |
 
 ---
 
@@ -644,12 +664,12 @@ If you see a `ConvergenceWarning`, increase `max_iter` in `src/models/train.py`.
 If you use this project in your research, please cite:
 
 ```bibtex
-@inproceedings{xai-zta-2024,
-  title     = {{XAI-ZTA}: Explainable {AI} for Zero Trust Continuous
-               Authentication Decisions},
-  author    = {Krishita17},
+@inproceedings{choksi2026xaizta,
+  title     = {{XAI-ZTA}: Explainable and Assured {AI} for Zero Trust
+               Continuous Authentication},
+  author    = {Choksi, Krishita Sanjay},
   booktitle = {Proceedings of the IEEE Conference on Security and Privacy},
-  year      = {2024},
+  year      = {2026},
   note      = {https://github.com/Krishita17/XAI-ZTA}
 }
 ```
@@ -700,7 +720,7 @@ MIT License — See [LICENSE](LICENSE) for details.
 ---
 
 <p align="center">
-  <strong>Built by <a href="https://github.com/Krishita17">Krishita17</a></strong>
+  <strong>Built and maintained by Krishita Sanjay Choksi (<a href="https://github.com/Krishita17">@Krishita17</a>)</strong>
   <br>
   <em>Academic Research Project — IEEE Conference on Security and Privacy</em>
 </p>
