@@ -1,2 +1,0 @@
-# XAI-ZTA Training Logs
-# Format: [timestamp] [level] message

@@ -11,7 +11,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: XAI-ZTA
+    working-directory: trustlens
 
 jobs:
   test:
@@ -54,9 +54,9 @@ jobs:
         run: pip install bandit pip-audit
 
       - name: Static security analysis (Bandit)
-        working-directory: XAI-ZTA
+        working-directory: trustlens
         run: bandit -r src -ll
 
       - name: Dependency vulnerability audit (pip-audit)
-        working-directory: XAI-ZTA
+        working-directory: trustlens
         run: pip-audit -r requirements.txt || true

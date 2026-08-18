@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to XAI-ZTA are documented here.
+All notable changes to TrustLens are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/) and this
 project adheres to [Semantic Versioning](https://semver.org/).
 

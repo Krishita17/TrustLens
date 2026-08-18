@@ -1,0 +1,2 @@
+# TrustLens Training Logs
+# Format: [timestamp] [level] message

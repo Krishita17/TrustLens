@@ -1,20 +1,20 @@
-# XAI-ZTA: Explainable AI for Zero Trust Continuous Authentication
+# TrustLens: Explainable AI for Zero Trust Continuous Authentication
 
 > **A complete research system that makes AI-driven access control decisions transparent, trustworthy, and auditable.**
 
-[![CI](https://github.com/Krishita17/XAI-ZTA/actions/workflows/ci.yml/badge.svg)](https://github.com/Krishita17/XAI-ZTA/actions/workflows/ci.yml)
-[![CodeQL](https://github.com/Krishita17/XAI-ZTA/actions/workflows/codeql.yml/badge.svg)](https://github.com/Krishita17/XAI-ZTA/actions/workflows/codeql.yml)
+[![CI](https://github.com/Krishita17/TrustLens/actions/workflows/ci.yml/badge.svg)](https://github.com/Krishita17/TrustLens/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/Krishita17/TrustLens/actions/workflows/codeql.yml/badge.svg)](https://github.com/Krishita17/TrustLens/actions/workflows/codeql.yml)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python&logoColor=white)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Tests](https://img.shields.io/badge/tests-59%20passing-brightgreen)](XAI-ZTA/tests)
+[![Tests](https://img.shields.io/badge/tests-59%20passing-brightgreen)](trustlens/tests)
 [![Security: Bandit](https://img.shields.io/badge/security-bandit%20%2B%20pip--audit-yellow)](.github/workflows/ci.yml)
 
-[![Explainable AI](https://img.shields.io/badge/Explainable%20AI-SHAP%20·%20LIME%20·%20Anchor-8A2BE2)](XAI-ZTA/docs/ARCHITECTURE.md)
+[![Explainable AI](https://img.shields.io/badge/Explainable%20AI-SHAP%20·%20LIME%20·%20Anchor-8A2BE2)](trustlens/docs/ARCHITECTURE.md)
 [![Zero Trust](https://img.shields.io/badge/Zero%20Trust-NIST%20SP%20800--207-003366)](https://csrc.nist.gov/publications/detail/sp/800-207/final)
-[![Adversarial XAI](https://img.shields.io/badge/Adversarial%20XAI-robustness%20audited-critical)](XAI-ZTA/docs/THREAT_MODEL.md)
+[![Adversarial XAI](https://img.shields.io/badge/Adversarial%20XAI-robustness%20audited-critical)](trustlens/docs/THREAT_MODEL.md)
 [![Streamlit](https://img.shields.io/badge/Streamlit-Dashboard-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
 
-> **Topics:** `explainable-ai` · `zero-trust` · `xai` · `shap` · `lime` · `anchor` · `adversarial-machine-learning` · `cybersecurity` · `nist-800-207` · `concept-drift` · `continuous-authentication` · `mlsecops` · `threat-modeling` · `streamlit`
+> **Topics:** `trustworthy-ai` · `ai-assurance` · `explainable-ai` · `xai` · `interpretable-machine-learning` · `zero-trust` · `shap` · `lime` · `anchor` · `adversarial-machine-learning` · `adversarial-xai` · `ai-safety` · `cybersecurity` · `nist-800-207` · `concept-drift` · `continuous-authentication` · `mlsecops` · `threat-modeling` · `anomaly-detection` · `streamlit`
 
 ---
 
@@ -22,7 +22,7 @@
 
 When an AI system grants or denies network access in a Zero Trust Architecture, **can it explain why** — in a way a human security analyst understands and trusts?
 
-XAI-ZTA answers this by combining:
+TrustLens answers this by combining:
 - **3 ML classifiers** (Random Forest, XGBoost, Neural Network) for access decisions
 - **3 XAI methods** (SHAP, LIME, Anchor) to explain every single decision
 - **A real-time 5-page dashboard** for security analysts
@@ -35,19 +35,19 @@ XAI-ZTA answers this by combining:
 ## 🆕 What's New in v2.0 — Explanation Assurance
 
 Most XAI systems assume the explanation is correct and the model stays valid
-forever. XAI-ZTA v2.0 challenges both assumptions with three novel, tested,
+forever. TrustLens v2.0 challenges both assumptions with three novel, tested,
 dependency-light modules that turn *"trust the explanation"* into *"verify the
 explanation."*
 
 | Module | Problem it solves | Novel metric | Code |
 |--------|-------------------|--------------|------|
-| **XAI Consensus Engine** | SHAP, LIME and Anchor often *disagree* — a single explanation can mislead an analyst | **XAI Consensus Score (XCS)** ∈ [0,1] blending rank correlation, top-k overlap, and sign agreement; flags low-consensus decisions for human review | [`src/xai/consensus.py`](XAI-ZTA/src/xai/consensus.py) |
-| **Explanation Robustness Auditor** | Explanations can be flipped by imperceptible noise *without changing the verdict* (Ghorbani et al., AAAI'19) — an attack on the analyst | **Robustness Score** + local-Lipschitz estimate; detects the `fragility_attack` signature (stable verdict, unstable explanation) | [`src/xai/robustness.py`](XAI-ZTA/src/xai/robustness.py) |
-| **Concept-Drift Monitor** | "Continuous" auth runs on a non-stationary world; a frozen model silently decays and can be drift-poisoned | **Population Stability Index (PSI)** per feature + on the decision rate, with a monitor/investigate/**retrain** recommendation | [`src/zta/drift_monitor.py`](XAI-ZTA/src/zta/drift_monitor.py) |
+| **XAI Consensus Engine** | SHAP, LIME and Anchor often *disagree* — a single explanation can mislead an analyst | **XAI Consensus Score (XCS)** ∈ [0,1] blending rank correlation, top-k overlap, and sign agreement; flags low-consensus decisions for human review | [`src/xai/consensus.py`](trustlens/src/xai/consensus.py) |
+| **Explanation Robustness Auditor** | Explanations can be flipped by imperceptible noise *without changing the verdict* (Ghorbani et al., AAAI'19) — an attack on the analyst | **Robustness Score** + local-Lipschitz estimate; detects the `fragility_attack` signature (stable verdict, unstable explanation) | [`src/xai/robustness.py`](trustlens/src/xai/robustness.py) |
+| **Concept-Drift Monitor** | "Continuous" auth runs on a non-stationary world; a frozen model silently decays and can be drift-poisoned | **Population Stability Index (PSI)** per feature + on the decision rate, with a monitor/investigate/**retrain** recommendation | [`src/zta/drift_monitor.py`](trustlens/src/zta/drift_monitor.py) |
 
 Together these form a closed **explanation-assurance loop** — see
-[`docs/ARCHITECTURE.md`](XAI-ZTA/docs/ARCHITECTURE.md) §4 and the attack tree in
-[`docs/THREAT_MODEL.md`](XAI-ZTA/docs/THREAT_MODEL.md).
+[`docs/ARCHITECTURE.md`](trustlens/docs/ARCHITECTURE.md) §4 and the attack tree in
+[`docs/THREAT_MODEL.md`](trustlens/docs/THREAT_MODEL.md).
 
 ---
 
@@ -56,27 +56,27 @@ Together these form a closed **explanation-assurance loop** — see
 ### Page 1 — Live Authentication Monitor
 Real-time stream of authentication requests with color-coded ALLOW/DENY decisions, trust scores, and interactive filtering.
 
-![Live Authentication Monitor](XAI-ZTA/docs/screenshots/01_live_monitor.png)
+![Live Authentication Monitor](trustlens/docs/screenshots/01_live_monitor.png)
 
 ### Page 2 — Explanation Deep Dive
 Side-by-side SHAP, LIME, and Anchor explanations for any decision. Includes counterfactual analysis ("what would flip the decision?").
 
-![Explanation Deep Dive](XAI-ZTA/docs/screenshots/02_explanation_deep_dive.png)
+![Explanation Deep Dive](trustlens/docs/screenshots/02_explanation_deep_dive.png)
 
 ### Page 3 — Model Comparison & Benchmarks
 Head-to-head performance metrics, ROC curves, and inference speed benchmarks for all three classifiers.
 
-![Model Comparison](XAI-ZTA/docs/screenshots/03_model_comparison.png)
+![Model Comparison](trustlens/docs/screenshots/03_model_comparison.png)
 
 ### Page 4 — Threat Intelligence
 Attack pattern detection, risk heatmaps, anomaly analysis, and top risky users ranked by denial frequency.
 
-![Threat Intelligence](XAI-ZTA/docs/screenshots/04_threat_intelligence.png)
+![Threat Intelligence](trustlens/docs/screenshots/04_threat_intelligence.png)
 
 ### Page 5 — Compliance & Audit
 NIST SP 800-207, HIPAA, and GDPR compliance reporting with one-click CSV/JSON audit log export.
 
-![Compliance & Audit](XAI-ZTA/docs/screenshots/05_compliance_audit.png)
+![Compliance & Audit](trustlens/docs/screenshots/05_compliance_audit.png)
 
 ---
 
@@ -84,8 +84,8 @@ NIST SP 800-207, HIPAA, and GDPR compliance reporting with one-click CSV/JSON au
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Krishita17/XAI-ZTA.git
-cd XAI-ZTA
+git clone https://github.com/Krishita17/TrustLens.git
+cd TrustLens/trustlens
 
 # 2. Create virtual environment
 python3 -m venv venv
@@ -126,14 +126,14 @@ flowchart TD
 ```
 
 📐 **Full diagrams** — system context, component view, decision sequence, and the
-explanation-assurance loop — are in **[`docs/ARCHITECTURE.md`](XAI-ZTA/docs/ARCHITECTURE.md)**.
+explanation-assurance loop — are in **[`docs/ARCHITECTURE.md`](trustlens/docs/ARCHITECTURE.md)**.
 
 ---
 
 ## Project Structure
 
 ```
-XAI-ZTA/
+trustlens/
 ├── src/
 │   ├── data/                    # Data loading, preprocessing, feature engineering
 │   │   ├── synthetic_generator.py   # Generates 50K realistic auth events
@@ -287,7 +287,7 @@ Download from [UNSW Research](https://research.unsw.edu.au/projects/unsw-nb15-da
 <details>
 <summary><strong>VS Code (Windows / macOS / Linux)</strong></summary>
 
-1. Open `XAI-ZTA/` folder in VS Code
+1. Open `trustlens/` folder in VS Code
 2. Open integrated terminal: <code>Ctrl+`</code> (or <code>Cmd+`</code>)
 3. Create venv: `python -m venv venv`
 4. Activate: `source venv/bin/activate` (mac/linux) or `venv\Scripts\Activate.ps1` (windows)
@@ -301,8 +301,8 @@ Download from [UNSW Research](https://research.unsw.edu.au/projects/unsw-nb15-da
 
 ```bash
 brew install python@3.11
-git clone https://github.com/Krishita17/XAI-ZTA.git
-cd XAI-ZTA
+git clone https://github.com/Krishita17/TrustLens.git
+cd TrustLens/trustlens
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python run_pipeline.py
@@ -315,8 +315,8 @@ streamlit run src/dashboard/app.py
 
 ```bash
 sudo apt install -y python3 python3-pip python3-venv git
-git clone https://github.com/Krishita17/XAI-ZTA.git
-cd XAI-ZTA
+git clone https://github.com/Krishita17/TrustLens.git
+cd TrustLens/trustlens
 python3 -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
 python run_pipeline.py
@@ -350,7 +350,7 @@ pytest tests/ -v
 
 | Problem | Solution |
 |---------|----------|
-| `ModuleNotFoundError: No module named 'src'` | Run from `XAI-ZTA/` directory: `cd XAI-ZTA` |
+| `ModuleNotFoundError: No module named 'src'` | Run from `trustlens/` directory: `cd trustlens` |
 | `anchor-exp` fails to install | Optional — the system falls back to rule approximation |
 | Dashboard shows no data | Run `python -m src.models.train` first, or dashboard uses synthetic data |
 | PyTorch slow on CPU | Install CPU-only: `pip install torch --index-url https://download.pytorch.org/whl/cpu` |
@@ -359,12 +359,12 @@ pytest tests/ -v
 
 ## Security
 
-XAI-ZTA is a **defensive** security research project and ships a full security
+TrustLens is a **defensive** security research project and ships a full security
 posture:
 
 | Control | Implementation |
 |---------|----------------|
-| **STRIDE threat model** (incl. explanation-manipulation & drift-poisoning attacks) | [`docs/THREAT_MODEL.md`](XAI-ZTA/docs/THREAT_MODEL.md) |
+| **STRIDE threat model** (incl. explanation-manipulation & drift-poisoning attacks) | [`docs/THREAT_MODEL.md`](trustlens/docs/THREAT_MODEL.md) |
 | **Vulnerability disclosure policy** | [`SECURITY.md`](SECURITY.md) |
 | **Static analysis** — Bandit + CodeQL (security-and-quality) | [`.github/workflows`](.github/workflows) |
 | **Dependency auditing** — pip-audit + Dependabot | [`.github/dependabot.yml`](.github/dependabot.yml) |
@@ -372,7 +372,7 @@ posture:
 | **Explanation-integrity controls** — consensus + robustness auditing | `src/xai/` |
 
 Report vulnerabilities privately via GitHub's
-[Security advisories](https://github.com/Krishita17/XAI-ZTA/security/advisories/new).
+[Security advisories](https://github.com/Krishita17/TrustLens/security/advisories/new).
 
 ---
 
@@ -380,12 +380,12 @@ Report vulnerabilities privately via GitHub's
 
 ```bibtex
 @inproceedings{choksi2026xaizta,
-  title     = {{XAI-ZTA}: Explainable and Assured {AI} for Zero Trust
+  title     = {{TrustLens}: Explainable and Assured {AI} for Zero Trust
                Continuous Authentication},
   author    = {Choksi, Krishita Sanjay},
   booktitle = {Proceedings of the IEEE Conference on Security and Privacy},
   year      = {2026},
-  note      = {https://github.com/Krishita17/XAI-ZTA}
+  note      = {https://github.com/Krishita17/TrustLens}
 }
 ```
 

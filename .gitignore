@@ -23,9 +23,9 @@ env/
 .ipynb_checkpoints/
 
 # Data (large files)
-XAI-ZTA/data/raw/*.csv
-XAI-ZTA/data/raw/*.json
-!XAI-ZTA/data/raw/place_raw_dataset_here.txt
+trustlens/data/raw/*.csv
+trustlens/data/raw/*.json
+!trustlens/data/raw/place_raw_dataset_here.txt
 
 # Model artifacts (large binary files)
 *.pkl
@@ -39,12 +39,12 @@ Thumbs.db
 
 # Logs
 *.log
-XAI-ZTA/experiments/logs/*.txt
-!XAI-ZTA/experiments/logs/.gitkeep
+trustlens/experiments/logs/*.txt
+!trustlens/experiments/logs/.gitkeep
 
 # Reports
 *.pdf
-!XAI-ZTA/user_study/questionnaire.pdf
+!trustlens/user_study/questionnaire.pdf
 
 # Claude Code
 .claude/

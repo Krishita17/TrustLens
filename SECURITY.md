@@ -1,6 +1,6 @@
 # Security Policy
 
-XAI-ZTA is a defensive security research project. We take the security of the
+TrustLens is a defensive security research project. We take the security of the
 code — and the integrity of the security decisions it models — seriously.
 
 ## Supported Versions
@@ -16,7 +16,7 @@ code — and the integrity of the security decisions it models — seriously.
 Please report security issues **privately** — do not open a public issue for an
 undisclosed vulnerability.
 
-1. Use GitHub's **[Private vulnerability reporting](https://github.com/Krishita17/XAI-ZTA/security/advisories/new)**
+1. Use GitHub's **[Private vulnerability reporting](https://github.com/Krishita17/TrustLens/security/advisories/new)**
    (Security tab → *Report a vulnerability*).
 2. Include: affected file/module, reproduction steps, impact, and any PoC.
 3. You will receive an acknowledgement within **72 hours** and a remediation
@@ -29,7 +29,7 @@ Please give us a reasonable window to remediate before any public disclosure
 
 In scope:
 
-- The Python source under `XAI-ZTA/src/` (trust scoring, policy engine, XAI,
+- The Python source under `trustlens/src/` (trust scoring, policy engine, XAI,
   consensus/robustness/drift modules, dashboard).
 - CI/CD workflows under `.github/`.
 - Dependency and supply-chain issues surfaced by `pip-audit` / Dependabot.
@@ -46,7 +46,7 @@ Out of scope:
 This project ships a full **STRIDE threat model**, including attacks that are
 specific to the explainability layer (explanation manipulation, model
 extraction via explanations, adversarial evasion, and behavioural drift
-poisoning). See **[`XAI-ZTA/docs/THREAT_MODEL.md`](XAI-ZTA/docs/THREAT_MODEL.md)**.
+poisoning). See **[`trustlens/docs/THREAT_MODEL.md`](trustlens/docs/THREAT_MODEL.md)**.
 
 ## Security Hardening in This Project
 
@@ -62,7 +62,7 @@ poisoning). See **[`XAI-ZTA/docs/THREAT_MODEL.md`](XAI-ZTA/docs/THREAT_MODEL.md)
 
 ## Responsible Use
 
-XAI-ZTA is intended for **research, education, and defensive** security work
+TrustLens is intended for **research, education, and defensive** security work
 (understanding and auditing AI-driven access control). It must not be used to
 build systems that make consequential access decisions about real people
 without appropriate human oversight, validation, and compliance review.
